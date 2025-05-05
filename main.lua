@@ -1,40 +1,39 @@
 local player = game.Players.LocalPlayer
 local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
 
--- Icon con mắt
+
 local eyeButton = Instance.new("ImageButton", gui)
 eyeButton.Size = UDim2.new(0, 50, 0, 50)
 eyeButton.Position = UDim2.new(0, 10, 0, 10)
 eyeButton.Image = "rbxassetid://6035047409"
 
--- Logo Discord dưới con mắt
+
 local discordLogo = Instance.new("ImageLabel", gui)
 discordLogo.Size = UDim2.new(0, 30, 0, 30)
 discordLogo.Position = UDim2.new(0, 15, 0, 65)
 discordLogo.Image = "rbxassetid://6034978715"
 discordLogo.BackgroundTransparency = 1
 
--- Đường link đến server Discord
-local discordLink = "https://discord.gg/tSVP4W6U"
 
--- Chuyển qua Discord khi nhấn vào logo
+local discordLink = "https://discord.gg/?"
+
+
 discordLogo.MouseButton1Click:Connect(function()
     game:GetService("GuiService"):OpenBrowserWindow(discordLink)
 end)
 
--- Menu Frame
+
 local menuFrame = Instance.new("Frame", gui)
 menuFrame.Visible = false
 menuFrame.Size = UDim2.new(0, 300, 0, 400)
 menuFrame.Position = UDim2.new(0.5, -150, 0.5, -200)
 menuFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 
--- Toggle menu
 eyeButton.MouseButton1Click:Connect(function()
 	menuFrame.Visible = not menuFrame.Visible
 end)
 
--- Auto Farm
+
 local autoFarm = false
 local btnFarm = Instance.new("TextButton", menuFrame)
 btnFarm.Size = UDim2.new(1, -20, 0, 50)
@@ -48,7 +47,6 @@ btnFarm.MouseButton1Click:Connect(function()
 	btnFarm.Text = "Auto Farm: " .. (autoFarm and "ON" or "OFF")
 end)
 
--- Nút Auto Thay Gas
 local autoGas = false
 local btnGas = Instance.new("TextButton", menuFrame)
 btnGas.Size = UDim2.new(1, -20, 0, 50)
@@ -62,7 +60,6 @@ btnGas.MouseButton1Click:Connect(function()
 	btnGas.Text = "Auto Thay Gas: " .. (autoGas and "ON" or "OFF")
 end)
 
--- Nút Auto Thay Kiếm
 local autoBlade = false
 local btnBlade = Instance.new("TextButton", menuFrame)
 btnBlade.Size = UDim2.new(1, -20, 0, 50)
@@ -76,7 +73,6 @@ btnBlade.MouseButton1Click:Connect(function()
 	btnBlade.Text = "Auto Thay Kiếm: " .. (autoBlade and "ON" or "OFF")
 end)
 
--- Chức năng auto tấn công Titan
 game:GetService("RunService").RenderStepped:Connect(function()
 	if autoFarm then
 		for _, obj in pairs(workspace:GetDescendants()) do
@@ -101,7 +97,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
 	end
 end)
 
--- Tự động thay gas và kiếm
+
 game:GetService("RunService").RenderStepped:Connect(function()
 	local char = player.Character
 	if not char then return end
@@ -149,7 +145,6 @@ local function createESP(target)
 	billboard.Parent = target
 end
 
--- Duyệt và tạo ESP
 game:GetService("RunService").RenderStepped:Connect(function()
 	if not autoFarm then return end
 
